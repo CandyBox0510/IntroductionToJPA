@@ -1,9 +1,6 @@
 package hellojpa;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.List;
 
 public class JpaMain {
@@ -16,21 +13,31 @@ public class JpaMain {
         tx.begin();
 
         try{
-//            Member member = new Member();
-//            member.setId( 2L );
-//            member.setName( "HelloB" );
 
-//            Member findMember = entityManager.find( Member.class, 1L );
-//            System.out.println("findMember = " + findMember.getId());
-//            System.out.println("findMember = " + findMember.getName());
-//            findMember.setName( "HelloJPA" );
 
-            List< Member > select_m_from_member = entityManager.createQuery( "select m from Member as m", Member.class )
-                    .setFirstResult( 1 ).setMaxResults( 10 ).getResultList();
+            /*Member member1 = new Member(150L, "A");
+            Member member2 = new Member(160L, "B");
 
-            for ( Member member : select_m_from_member ) {
-                System.out.println("member.name = " + member.getName());
-            }
+            entityManager.persist( member1 );
+            entityManager.persist( member2 );*/
+
+            /*Member member = entityManager.find( Member.class, 150L );
+            member.setName( "ZZZZZ" );*/
+
+            /*Member member3 = new Member(170L, "B");
+            entityManager.persist( member3 );
+            entityManager.flush();*/
+
+            Member member = entityManager.find( Member.class, 150L );
+            member.setName( "AAAAAA" );
+
+//            entityManager.detach( member );
+//            entityManager.clear();
+//            entityManager.close();
+
+            Member member2 = entityManager.find( Member.class, 150L );
+
+            System.out.println("==========================");
 
             tx.commit();
         } catch ( Exception e ){
