@@ -1,2 +1,2 @@
-# class파일 제외
-/target
+# class폴더 제외
+/target/
