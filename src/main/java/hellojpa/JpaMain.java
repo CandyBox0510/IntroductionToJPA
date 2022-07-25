@@ -29,7 +29,7 @@ public class JpaMain {
             entityManager.flush();*/
 
             Member member = entityManager.find( Member.class, 150L );
-            member.setName( "AAAAAA" );
+            member.setName( "AAAAAAㅠ" );
 
 //            entityManager.detach( member );
 //            entityManager.clear();
