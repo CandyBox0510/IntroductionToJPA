@@ -4,30 +4,23 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-//@Entity(name = "Member")
-//@Table(name = "MBR")
+//@SequenceGenerator(
+//        name = "MEMBER_SEQ_GENERATOR",
+//        sequenceName = "MEMBER_SEQ",
+//        initialValue = 1, allocationSize = 50  )
+//@TableGenerator(  )
 public class Member {
 
     @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY) //기본 키 생성을 데이터베이스에 위임, 이 전략일땐 persist때 업데이트 일어남(커밋때 말고)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR") //ex 오라클 시퀀스 전략, persist때 nextVal을 가져옴, 커밋때 업데이트
+    //@GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    @Column( name = "name" )
     private String username;
 
-    private Integer  age;
-
-    @Enumerated( EnumType.STRING )
-    //@Enumerated( EnumType.ORDINAL ) //enum 순서에 따라 0,1로 들어감
-    private RoleType roleType;
-
-    @Temporal( TemporalType.TIMESTAMP )
-    private Date createdDate;
-
-    @Temporal( TemporalType.TIMESTAMP )
-    private Date lastModifiedDate;
-
-    @Lob
-    private String description;
+    public Member() {
+    }
 
     public Long getId() {
         return id;
@@ -43,58 +36,5 @@ public class Member {
 
     public void setUsername( String username ) {
         this.username = username;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge( Integer age ) {
-        this.age = age;
-    }
-
-    public RoleType getRoleType() {
-        return roleType;
-    }
-
-    public void setRoleType( RoleType roleType ) {
-        this.roleType = roleType;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate( Date createdDate ) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate( Date lastModifiedDate ) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription( String description ) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Member{" +
-               "id=" + id +
-               ", username='" + username + '\'' +
-               ", age=" + age +
-               ", roleType=" + roleType +
-               ", createdDate=" + createdDate +
-               ", lastModifiedDate=" + lastModifiedDate +
-               ", description='" + description + '\'' +
-               '}';
     }
 }

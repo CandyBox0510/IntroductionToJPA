@@ -15,10 +15,7 @@ public class JpaMain {
         try{
 
             Member member = new Member();
-            member.setId( 2L );
             member.setUsername( "CCC" );
-            member.setRoleType( RoleType.ADMIN );
-
 
             System.out.println("==========================");
 
