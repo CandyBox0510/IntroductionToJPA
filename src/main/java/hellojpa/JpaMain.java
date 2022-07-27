@@ -14,31 +14,15 @@ public class JpaMain {
 
         try{
 
+            Member member = new Member();
+            member.setId( 2L );
+            member.setUsername( "CCC" );
+            member.setRoleType( RoleType.ADMIN );
 
-            /*Member member1 = new Member(150L, "A");
-            Member member2 = new Member(160L, "B");
-
-            entityManager.persist( member1 );
-            entityManager.persist( member2 );*/
-
-            /*Member member = entityManager.find( Member.class, 150L );
-            member.setName( "ZZZZZ" );*/
-
-            /*Member member3 = new Member(170L, "B");
-            entityManager.persist( member3 );
-            entityManager.flush();*/
-
-            Member member = entityManager.find( Member.class, 150L );
-            member.setName( "AAAAAAㅠ" );
-
-//            entityManager.detach( member );
-//            entityManager.clear();
-//            entityManager.close();
-
-            Member member2 = entityManager.find( Member.class, 150L );
 
             System.out.println("==========================");
 
+            entityManager.persist( member );
             tx.commit();
         } catch ( Exception e ){
             tx.rollback();
