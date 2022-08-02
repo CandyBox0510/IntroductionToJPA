@@ -13,14 +13,26 @@ public class JpaMain {
         tx.begin();
 
         try{
+            //저장
+            Team team = new Team();
+            team.setName("TeamA");
+//            team.getMembers().add( member );
+            entityManager.persist( team );
+
 
             Member member = new Member();
-            member.setUsername( "CCC" );
-
-            System.out.println("==========================");
-
+            member.setUsername( "member1" );
             entityManager.persist( member );
+
+            team.addMember(member);
+
+
+            entityManager.flush();
+            entityManager.clear();
+
+            System.out.println("==========BEFORE COMMIT======");
             tx.commit();
+            System.out.println("==========AFTER COMMIT======");
         } catch ( Exception e ){
             tx.rollback();
         } finally {
